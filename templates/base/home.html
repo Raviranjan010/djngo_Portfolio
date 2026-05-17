@@ -1,0 +1,442 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ name }} — CS Engineer & Designer{% endblock %}
+{% block meta_desc %}{{ intro_sub }}{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════ -->
+<section class="hero-section" id="home">
+    <!-- Background grid -->
+    <div class="hero-grid-bg"></div>
+
+    <div class="hero-container">
+
+        <!-- Left: Text Content -->
+        <div class="hero-text">
+            <!-- Status badge -->
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+                <span class="badge-dot {% if placed %}badge-dot--green{% else %}badge-dot--amber{% endif %}"></span>
+                {% if placed %}
+                    <span>🎉 Congratulations! You are placed.</span>
+                {% else %}
+                    <span>📚 {{ semester }} · {{ university }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="200">
+                <span class="hero-hi">Hello, I'm</span>
+                <span class="hero-name">{{ name }}</span>
+                <span class="hero-role">
+                    <span class="hero-role-prefix">—&nbsp;</span>
+                    <span class="hero-role-text" id="typed-text"></span>
+                    <span class="hero-cursor">|</span>
+                </span>
+            </h1>
+
+            <!-- Intro Paragraph -->
+            <p class="hero-intro" data-aos="fade-up" data-aos-delay="300">{{ intro_sub }}</p>
+
+            <!-- CTA Row -->
+            <div class="hero-cta-row" data-aos="fade-up" data-aos-delay="400">
+                <a href="#projects" class="btn btn-primary">
+                    <span>View My Work</span>
+                    <i class="fa-solid fa-arrow-down-long"></i>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <span>Contact Me</span>
+                </a>
+                <a href="{% static 'base/img/resume.pdf' %}" download class="hero-resume-link" title="Download Resume">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <span>Resume</span>
+                </a>
+            </div>
+
+            <!-- Social Row -->
+            <div class="hero-socials" data-aos="fade-up" data-aos-delay="500">
+                {% if socials.github %}<a href="{{ socials.github }}" target="_blank" rel="noopener" class="hs-link"><i class="fa-brands fa-github"></i></a>{% endif %}
+                {% if socials.linkedin %}<a href="{{ socials.linkedin }}" target="_blank" rel="noopener" class="hs-link"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
+                {% if socials.twitter %}<a href="{{ socials.twitter }}" target="_blank" rel="noopener" class="hs-link"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
+                {% if socials.instagram %}<a href="{{ socials.instagram }}" target="_blank" rel="noopener" class="hs-link"><i class="fa-brands fa-instagram"></i></a>{% endif %}
+                {% if socials.behance %}<a href="{{ socials.behance }}" target="_blank" rel="noopener" class="hs-link"><i class="fa-brands fa-behance"></i></a>{% endif %}
+            </div>
+        </div>
+
+        <!-- Right: Profile Visual -->
+        <div class="hero-visual" data-aos="zoom-in" data-aos-delay="300">
+            <div class="hero-img-wrapper">
+                <div class="hero-img-orbit"></div>
+                <div class="hero-img-frame">
+                    <img src="{% static 'base/img/profile.png' %}" alt="{{ name }} profile photo" class="hero-img">
+                </div>
+                <!-- Floating Tags -->
+                <div class="float-tag float-tag--top">
+                    <i class="fa-solid fa-code"></i> Full-Stack Dev
+                </div>
+                <div class="float-tag float-tag--bottom">
+                    <i class="fa-solid fa-palette"></i> UI/UX Designer
+                </div>
+                <div class="float-tag float-tag--right">
+                    <i class="fa-brands fa-python"></i> Python
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Hero Scroll Indicator -->
+    <div class="hero-scroll-indicator">
+        <span class="scroll-line"></span>
+        <span class="scroll-label">scroll</span>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PLACEMENT STATUS BANNER
+═══════════════════════════════════════════ -->
+{% if placed %}
+<section class="placement-banner placement-banner--success" data-aos="fade-up">
+    <div class="placement-content">
+        <i class="fa-solid fa-trophy"></i>
+        <div>
+            <strong>🎉 Congratulations! You are placed.</strong>
+            <span>Open to exciting opportunities and full-time roles.</span>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="placement-banner placement-banner--active" data-aos="fade-up">
+    <div class="placement-content">
+        <i class="fa-solid fa-fire"></i>
+        <div>
+            <strong>Currently: Keep Practicing!</strong>
+            <span>Actively learning, building projects, and seeking internship opportunities.</span>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<!-- ═══════════════════════════════════════════
+     FEATURED PROJECTS SECTION
+═══════════════════════════════════════════ -->
+<section class="section projects-section" id="projects">
+    <div class="section-container">
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Selected Work</span>
+            <h2 class="section-title">Projects I've Built</h2>
+            <p class="section-desc">
+                Handcrafted digital products — each one a blend of thoughtful design and clean engineering.
+            </p>
+        </div>
+
+        <!-- Project Filter Tabs -->
+        <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+            <button class="filter-btn" data-filter="frontend">Frontend</button>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="projects-grid">
+            {% for project in projects %}
+            <article class="project-card {{ project.category }}" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="project-card-inner">
+
+                    <!-- Project Number -->
+                    <span class="project-num">0{{ forloop.counter }}</span>
+
+                    <!-- Project Category Badge -->
+                    <span class="project-cat-badge">{{ project.category }}</span>
+
+                    <!-- Featured Star -->
+                    {% if project.featured %}
+                    <span class="project-featured-star" title="Featured Project">★ Featured</span>
+                    {% endif %}
+
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-desc">{{ project.desc }}</p>
+
+                    <!-- Tags -->
+                    <div class="project-tags">
+                        {% for tag in project.tags %}
+                        <span class="project-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Project Links -->
+                    <div class="project-links">
+                        {% if project.github_url and project.github_url != '#' %}
+                        <a href="{{ project.github_url }}" target="_blank" rel="noopener" class="project-link">
+                            <i class="fa-brands fa-github"></i> Code
+                        </a>
+                        {% endif %}
+                        {% if project.demo_url and project.demo_url != '#' %}
+                        <a href="{{ project.demo_url }}" target="_blank" rel="noopener" class="project-link project-link--demo">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                        </a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SKILLS SECTION
+═══════════════════════════════════════════ -->
+<section class="section skills-section" id="skills">
+    <div class="section-container">
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Capabilities</span>
+            <h2 class="section-title">Skills & Tools</h2>
+            <p class="section-desc">
+                Technologies I use to craft fast, accessible, and visually compelling products.
+            </p>
+        </div>
+
+        <div class="skills-layout">
+
+            <!-- Skill Bars -->
+            <div class="skills-bars-col" data-aos="fade-right">
+                {% for skill in skills %}
+                <div class="skill-row">
+                    <div class="skill-meta">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <span class="skill-pct">{{ skill.level }}%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-level="{{ skill.level }}" style="width: 0%;"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Skill Category Cards -->
+            <div class="skills-cards-col" data-aos="fade-left">
+                <div class="skill-cat-card">
+                    <div class="scc-icon"><i class="fa-solid fa-window-maximize"></i></div>
+                    <h4>Frontend</h4>
+                    <ul>
+                        <li>HTML5 &amp; CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Responsive Design</li>
+                        <li>Animation &amp; Interaction</li>
+                    </ul>
+                </div>
+                <div class="skill-cat-card">
+                    <div class="scc-icon"><i class="fa-solid fa-server"></i></div>
+                    <h4>Backend</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>Django Framework</li>
+                        <li>REST APIs</li>
+                        <li>SQLite / PostgreSQL</li>
+                    </ul>
+                </div>
+                <div class="skill-cat-card">
+                    <div class="scc-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                    <h4>Design</h4>
+                    <ul>
+                        <li>UI/UX Design</li>
+                        <li>Figma</li>
+                        <li>Canva Pro</li>
+                        <li>Animation Design</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     INTERESTS / WHAT I DO SECTION
+═══════════════════════════════════════════ -->
+<section class="section interests-section" id="interests">
+    <div class="section-container">
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Passions</span>
+            <h2 class="section-title">What Drives Me</h2>
+        </div>
+
+        <div class="interests-grid">
+            {% for interest in interests %}
+            <div class="interest-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}50">
+                <div class="interest-icon">{{ interest.icon }}</div>
+                <h3 class="interest-name">{{ interest.name }}</h3>
+                <p class="interest-desc">{{ interest.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CONTACT SECTION
+═══════════════════════════════════════════ -->
+<section class="section contact-section" id="contact">
+    <div class="section-container">
+
+        <div class="contact-grid">
+
+            <!-- Left: CTA Text -->
+            <div class="contact-text" data-aos="fade-right">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="contact-headline">Let's Build<br>Something <em>Great</em></h2>
+                <p class="contact-desc">
+                    Whether it's a project collaboration, internship opportunity, or just a creative conversation — I'm always open to connecting with like-minded people.
+                </p>
+                <div class="contact-details">
+                    <a href="mailto:{{ email }}" class="contact-detail-link">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>{{ email }}</span>
+                    </a>
+                    <a href="tel:{{ phone }}" class="contact-detail-link">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>{{ phone }}</span>
+                    </a>
+                    <span class="contact-detail-link">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>{{ location }}</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form-wrapper" data-aos="fade-left">
+                <form class="contact-form" id="contact-form" novalidate>
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cf-name">Your Name</label>
+                            <input type="text" id="cf-name" name="name" placeholder="Ravi Ranjan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cf-email">Email Address</label>
+                            <input type="email" id="cf-email" name="email" placeholder="hello@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-subject">Subject</label>
+                        <input type="text" id="cf-subject" name="subject" placeholder="Project Collaboration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-message">Message</label>
+                        <textarea id="cf-message" name="message" placeholder="Tell me about your project or opportunity…" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>Send Message</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+    // Typewriter effect
+    const roles = ["CS Engineer", "UI/UX Designer", "Python Developer", "Django Developer", "Creative Technologist"];
+    let roleIdx = 0, charIdx = 0, isDeleting = false;
+    const typedEl = document.getElementById('typed-text');
+
+    function typeWriter() {
+        const current = roles[roleIdx];
+        if (isDeleting) {
+            typedEl.textContent = current.substring(0, charIdx--);
+        } else {
+            typedEl.textContent = current.substring(0, charIdx++);
+        }
+
+        let speed = isDeleting ? 60 : 110;
+        if (!isDeleting && charIdx > current.length) {
+            speed = 1800;
+            isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+            isDeleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+            speed = 400;
+        }
+        setTimeout(typeWriter, speed);
+    }
+    typeWriter();
+
+    // Project filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.classList.contains(filter)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.4s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Skill bars animate on scroll
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bars = entry.target.querySelectorAll('.skill-bar-fill');
+                bars.forEach(bar => {
+                    const level = bar.getAttribute('data-level');
+                    bar.style.transition = 'width 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+                    bar.style.width = level + '%';
+                });
+                skillObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const skillsSection = document.querySelector('.skills-bars-col');
+    if (skillsSection) skillObserver.observe(skillsSection);
+
+    // Contact form submit handler
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.innerHTML = '<span>Sending…</span><i class="fa-solid fa-spinner fa-spin"></i>';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            btn.innerHTML = '<span>Send Message</span><i class="fa-solid fa-paper-plane"></i>';
+            btn.disabled = false;
+            this.reset();
+            showToast('Message sent! I\'ll get back to you soon.');
+        }, 1800);
+    });
+</script>
+{% endblock %}

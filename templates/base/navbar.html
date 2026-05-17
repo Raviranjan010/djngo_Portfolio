@@ -1,0 +1,42 @@
+<!-- ════════════════════════════════
+     NAVBAR
+     ════════════════════════════════ -->
+<header class="site-header" id="site-header">
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <a href="{% url 'base:home' %}" class="nav-logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-name">RRK</span>
+            <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="nav-links" id="nav-links">
+            <a href="{% url 'base:home' %}" class="nav-item {% if page == 'home' %}active{% endif %}">Home</a>
+            <a href="{% url 'base:about' %}" class="nav-item {% if page == 'about' %}active{% endif %}">About</a>
+            <a href="{% url 'base:home' %}#projects" class="nav-item">Projects</a>
+            <a href="{% url 'base:home' %}#skills" class="nav-item">Skills</a>
+            <a href="{% url 'base:home' %}#contact" class="nav-item">Contact</a>
+        </nav>
+
+        <!-- Controls -->
+        <div class="nav-controls">
+            <button class="theme-btn" id="theme-btn" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <a href="#contact" class="nav-cta btn-ghost">Let's Talk</a>
+
+            <!-- Mobile Toggle -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay" id="mobile-overlay"></div>

@@ -1,0 +1,78 @@
+<!-- ════════════════════════════════
+     FOOTER
+     ════════════════════════════════ -->
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <!-- Footer Top Row -->
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="footer-logo">
+                    <span class="logo-bracket">&lt;</span><span class="logo-name">RRK</span><span class="logo-bracket">/&gt;</span>
+                </span>
+                <p class="footer-tagline">Crafting digital experiences<br>one pixel at a time.</p>
+            </div>
+
+            <div class="footer-nav-group">
+                <h4 class="footer-nav-title">Navigate</h4>
+                <nav class="footer-nav">
+                    <a href="{% url 'base:home' %}">Home</a>
+                    <a href="{% url 'base:about' %}">About</a>
+                    <a href="{% url 'base:home' %}#projects">Projects</a>
+                    <a href="{% url 'base:home' %}#skills">Skills</a>
+                    <a href="{% url 'base:home' %}#contact">Contact</a>
+                </nav>
+            </div>
+
+            <div class="footer-connect">
+                <h4 class="footer-nav-title">Connect</h4>
+                <div class="footer-socials">
+                    {% if socials.github %}
+                    <a href="{{ socials.github }}" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    {% endif %}
+                    {% if socials.linkedin %}
+                    <a href="{{ socials.linkedin }}" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    {% endif %}
+                    {% if socials.twitter %}
+                    <a href="{{ socials.twitter }}" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    {% endif %}
+                    {% if socials.instagram %}
+                    <a href="{{ socials.instagram }}" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    {% endif %}
+                    {% if socials.behance %}
+                    <a href="{{ socials.behance }}" target="_blank" rel="noopener" class="social-link" aria-label="Behance">
+                        <i class="fa-brands fa-behance"></i>
+                    </a>
+                    {% endif %}
+                </div>
+                <a href="mailto:{{ email }}" class="footer-email">{{ email }}</a>
+            </div>
+        </div>
+
+        <!-- Footer Divider -->
+        <div class="footer-divider">
+            <div class="divider-line"></div>
+            <span class="divider-text">{{ name }}</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Footer Bottom Row -->
+        <div class="footer-bottom">
+            <p class="footer-copy">
+                &copy; 2025 {{ name }}. Handcrafted with Django &amp; passion.
+            </p>
+            <p class="footer-location">
+                <i class="fa-solid fa-location-dot"></i> {{ location }}
+            </p>
+        </div>
+
+    </div>
+</footer>
