@@ -1,210 +1,124 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-{% block title %}About — {{ name }}{% endblock %}
-{% block meta_desc %}Learn more about {{ name }}, a CS Engineering student at {{ university }} passionate about UI/UX Design, AI, and Web Development.{% endblock %}
+{% block title %}About {{ name }} | Student Portfolio{% endblock %}
+{% block meta_desc %}About {{ name }}, a Computer Science Engineering student at {{ university }} focused on UI/UX, AI, web development, and creative technology.{% endblock %}
 
 {% block content %}
-
-<!-- ═══════════════════════════════════════════
-     ABOUT PAGE HERO
-═══════════════════════════════════════════ -->
-<section class="about-hero">
-    <div class="section-container">
-        <div class="about-hero-inner">
-            <div class="about-hero-text" data-aos="fade-right">
-                <span class="section-label">About Me</span>
-                <h1 class="about-headline">The Story<br>Behind the <em>Code</em></h1>
-                <p class="about-intro-p">
-                    I'm <strong>{{ name }}</strong> — a Computer Science Engineering student at {{ university }}, building digital experiences that sit at the intersection of engineering precision and creative design.
-                </p>
-                <div class="about-quick-facts">
-                    <div class="aqf-item">
-                        <i class="fa-solid fa-building-columns"></i>
-                        <span>{{ university }}</span>
-                    </div>
-                    <div class="aqf-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>{{ course }}</span>
-                    </div>
-                    <div class="aqf-item">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <span>{{ semester }}</span>
-                    </div>
-                    <div class="aqf-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>{{ location }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="about-hero-visual" data-aos="zoom-in" data-aos-delay="200">
-                <div class="about-img-wrap">
-                    <img src="{% static 'base/img/profile.png' %}" alt="{{ name }}" class="about-img">
-                    <div class="about-img-deco"></div>
-                </div>
-                <div class="about-stat-chips">
-                    <div class="stat-chip">
-                        <strong>6+</strong>
-                        <span>Projects</span>
-                    </div>
-                    <div class="stat-chip">
-                        <strong>10+</strong>
-                        <span>Skills</span>
-                    </div>
-                    <div class="stat-chip">
-                        <strong>2</strong>
-                        <span>Years</span>
-                    </div>
-                </div>
-            </div>
+<section class="about-hero section-pad">
+    <div class="container about-grid">
+        <div class="about-title reveal">
+            <p class="eyebrow">About</p>
+            <h1>A student builder shaping a career around design-led engineering.</h1>
+        </div>
+        <div class="about-card reveal">
+            <img src="{% static profile_image %}" alt="{{ name }}">
+            <p>{{ name }} studies {{ branch }} at {{ university }} and is currently in {{ semester }}.</p>
         </div>
     </div>
 </section>
 
+<section class="section-pad">
+    <div class="container profile-grid">
+        <article class="profile-block reveal">
+            <span>College Name</span>
+            <h2>{{ university }}</h2>
+            <p>A place where Ravi is developing both technical fundamentals and creative product thinking.</p>
+        </article>
+        <article class="profile-block reveal">
+            <span>Branch</span>
+            <h2>{{ branch }}</h2>
+            <p>Focused on software foundations, modern web architecture, interface design, and practical product development.</p>
+        </article>
+        <article class="profile-block reveal">
+            <span>Semester</span>
+            <h2>{{ semester }}</h2>
+            <p>Building early momentum through disciplined practice, portfolio projects, and hands-on experimentation.</p>
+        </article>
+    </div>
+</section>
 
-<!-- ═══════════════════════════════════════════
-     CAREER VISION SECTION
-═══════════════════════════════════════════ -->
-<section class="section about-vision-section">
-    <div class="section-container">
-
-        <div class="vision-grid">
-
-            <!-- Career Goal -->
-            <div class="vision-card" data-aos="fade-up" data-aos-delay="0">
-                <div class="vision-card-icon">
-                    <i class="fa-solid fa-rocket"></i>
-                </div>
-                <h3>Career Goal</h3>
+<section class="section-pad narrative-section">
+    <div class="container narrative-grid">
+        <div class="narrative-sticky reveal">
+            <p class="eyebrow">Goals</p>
+            <h2>Career, vision, and mission.</h2>
+        </div>
+        <div class="narrative-list">
+            <article class="narrative-card reveal">
+                <span>Career Goals</span>
                 <p>{{ career_goal }}</p>
-            </div>
-
-            <!-- Vision -->
-            <div class="vision-card vision-card--accent" data-aos="fade-up" data-aos-delay="100">
-                <div class="vision-card-icon">
-                    <i class="fa-solid fa-eye"></i>
-                </div>
-                <h3>Vision</h3>
+            </article>
+            <article class="narrative-card reveal">
+                <span>Vision</span>
                 <p>{{ vision }}</p>
-            </div>
-
-            <!-- Mission -->
-            <div class="vision-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="vision-card-icon">
-                    <i class="fa-solid fa-compass"></i>
-                </div>
-                <h3>Mission</h3>
-                <p>To continuously grow as a builder — shipping real products, learning from every challenge, and contributing meaningfully to the digital world.</p>
-            </div>
-
+            </article>
+            <article class="narrative-card reveal">
+                <span>Mission</span>
+                <p>{{ mission }}</p>
+            </article>
         </div>
-
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     TECHNICAL INTERESTS
-═══════════════════════════════════════════ -->
-<section class="section about-interests-section">
-    <div class="section-container">
-
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-label">What I Love</span>
-            <h2 class="section-title">Technical &amp; Creative Interests</h2>
+<section class="section-pad">
+    <div class="container dual-list">
+        <div class="reveal">
+            <p class="eyebrow">Technical Interests</p>
+            <h2>Subjects Ravi keeps returning to.</h2>
         </div>
-
-        <div class="about-interests-grid">
+        <div class="pill-cloud reveal">
             {% for interest in interests %}
-            <div class="about-interest-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}50">
-                <span class="aii-icon">{{ interest.icon }}</span>
-                <div class="aii-content">
-                    <h4>{{ interest.name }}</h4>
-                    <p>{{ interest.desc }}</p>
-                </div>
-            </div>
+                <span>{{ interest.name }}</span>
             {% endfor %}
         </div>
-
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     ACHIEVEMENTS TIMELINE
-═══════════════════════════════════════════ -->
-<section class="section achievements-section">
-    <div class="section-container">
-
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-label">Milestones</span>
-            <h2 class="section-title">Achievements</h2>
+<section class="section-pad">
+    <div class="container">
+        <div class="section-heading reveal">
+            <p class="eyebrow">Creative Skills</p>
+            <h2>Design and production skills that support the code.</h2>
         </div>
+        <div class="creative-grid">
+            {% for skill in skills %}
+            {% if skill.category == "Design" %}
+                <article class="creative-card reveal">
+                    <strong>{{ skill.name }}</strong>
+                    <span>{{ skill.level }}%</span>
+                </article>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
-        <div class="achievements-timeline">
+<section class="section-pad">
+    <div class="container timeline-wrap">
+        <div class="section-heading reveal">
+            <p class="eyebrow">Achievements</p>
+            <h2>Milestones from the learning journey.</h2>
+        </div>
+        <div class="timeline">
             {% for achievement in achievements %}
-            <div class="achievement-item" data-aos="fade-left" data-aos-delay="{{ forloop.counter0 }}00">
-                <div class="achievement-year">{{ achievement.year }}</div>
-                <div class="achievement-connector">
-                    <div class="achievement-dot"></div>
-                    {% if not forloop.last %}
-                    <div class="achievement-line"></div>
-                    {% endif %}
-                </div>
-                <div class="achievement-content">
-                    <h4>{{ achievement.title }}</h4>
+            <article class="timeline-item reveal">
+                <time>{{ achievement.year }}</time>
+                <div>
+                    <h3>{{ achievement.title }}</h3>
                     <p>{{ achievement.desc }}</p>
                 </div>
-            </div>
+            </article>
             {% endfor %}
         </div>
-
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     SKILLS SNAPSHOT (ABOUT PAGE)
-═══════════════════════════════════════════ -->
-<section class="section about-skills-section">
-    <div class="section-container">
-
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-label">Proficiency</span>
-            <h2 class="section-title">Skills Snapshot</h2>
-        </div>
-
-        <div class="about-skills-grid" data-aos="fade-up" data-aos-delay="100">
-            {% for skill in skills %}
-            <div class="about-skill-chip {% if skill.category == 'frontend' %}chip--frontend{% elif skill.category == 'backend' %}chip--backend{% else %}chip--design{% endif %}">
-                <span class="chip-name">{{ skill.name }}</span>
-                <span class="chip-level">{{ skill.level }}%</span>
-            </div>
-            {% endfor %}
-        </div>
-
+<section class="section-pad about-cta">
+    <div class="container cta-panel reveal">
+        <p class="eyebrow">Next</p>
+        <h2>See the projects behind the profile.</h2>
+        <a href="{% url 'base:home' %}#projects" class="btn primary">View Projects</a>
     </div>
 </section>
-
-
-<!-- ═══════════════════════════════════════════
-     BACK TO HOME CTA
-═══════════════════════════════════════════ -->
-<section class="section about-cta-section">
-    <div class="section-container">
-        <div class="about-cta-box" data-aos="zoom-in">
-            <h2>Want to see my work?</h2>
-            <p>Explore the projects I've built and the skills I've developed on my homepage.</p>
-            <a href="{% url 'base:home' %}#projects" class="btn btn-primary">
-                <span>View Projects</span>
-                <i class="fa-solid fa-arrow-right-long"></i>
-            </a>
-            <a href="{% url 'base:home' %}#contact" class="btn btn-outline">
-                <span>Get in Touch</span>
-            </a>
-        </div>
-    </div>
-</section>
-
 {% endblock %}
