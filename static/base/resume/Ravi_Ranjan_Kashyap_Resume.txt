@@ -1,0 +1,29 @@
+Ravi Ranjan Kashyap
+Computer Science Engineering Student
+Lovely Professional University
+
+Focus
+- Modern Web Development
+- UI/UX Design
+- Artificial Intelligence
+- Animation and Interactive Experiences
+- Scalable Digital Products
+
+Skills
+- HTML, CSS, JavaScript
+- Python, Django
+- Figma, Canva
+- Responsive Design
+- Animation Design
+
+Projects
+- E-Commerce Website
+- Interactive To-Do App
+- BMI Calculator with Graphs
+- Timeline Project
+- Sticker Tag Project
+- Portfolio Websites
+
+Contact
+- Email: raviranjan@example.com
+- Location: Punjab, India
