@@ -1,149 +1,150 @@
+from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.http import require_POST
 
-# ─── Student Data ─────────────────────────────────────────────────────────────
+
 STUDENT = {
     "name": "Ravi Ranjan Kashyap",
     "initials": "RRK",
-    "tagline": "CS Engineering Student",
     "university": "Lovely Professional University",
     "course": "Computer Science Engineering",
-    "semester": "2nd Year · 4th Semester",
+    "branch": "Computer Science Engineering",
+    "semester": "Second Year",
     "location": "Punjab, India",
     "email": "raviranjan@example.com",
     "phone": "+91 98765 43210",
     "placed": False,
-
-    "intro_headline": "Crafting Digital Experiences That Matter",
+    "profile_image": "base/img/profile.png",
+    "intro_headline": "Designing polished web experiences with engineering discipline.",
     "intro_sub": (
-        "I'm a Computer Science student at LPU who lives at the intersection of "
-        "design and technology. I build modern web products, experiment with AI, "
-        "and obsess over every pixel, interaction, and line of code."
+        "I am a Computer Science Engineering student at Lovely Professional University "
+        "focused on modern web development, UI/UX design, artificial intelligence, "
+        "animation, and scalable digital products."
     ),
-
     "career_goal": (
-        "To become a full-stack product engineer who builds scalable, "
-        "beautifully designed digital products — contributing to meaningful "
-        "startups or leading-edge companies that push boundaries."
+        "To grow into a product-minded full-stack engineer who can turn ideas into "
+        "fast, accessible, visually refined software for real users."
     ),
     "vision": (
-        "To bridge the gap between technical engineering and thoughtful design — "
-        "creating software that not only works flawlessly but feels genuinely human."
+        "To create technology that feels useful, elegant, and human while connecting "
+        "engineering depth with thoughtful visual design."
     ),
-
-    # Social Links
+    "mission": (
+        "To keep building, learning, and shipping practical products that combine "
+        "clean code, strong interaction design, and meaningful problem solving."
+    ),
     "socials": {
-        "github":   "https://github.com/Raviranjan010",
+        "github": "https://github.com/Raviranjan010",
         "linkedin": "https://linkedin.com",
-        "twitter":  "https://twitter.com",
-        "instagram":"https://instagram.com",
-        "behance":  "https://behance.net",
+        "instagram": "https://instagram.com",
+        "behance": "https://behance.net",
     },
-
-    # Skills with levels
     "skills": [
-        {"name": "HTML5 & CSS3",    "level": 95, "category": "frontend"},
-        {"name": "JavaScript",      "level": 82, "category": "frontend"},
-        {"name": "Python",          "level": 88, "category": "backend"},
-        {"name": "Django",          "level": 80, "category": "backend"},
-        {"name": "UI/UX Design",    "level": 85, "category": "design"},
-        {"name": "Figma",           "level": 82, "category": "design"},
-        {"name": "Responsive Design","level": 92,"category": "design"},
-        {"name": "Canva",           "level": 90, "category": "design"},
-        {"name": "Animation Design","level": 78, "category": "design"},
+        {"name": "HTML", "level": 94, "category": "Frontend"},
+        {"name": "CSS", "level": 92, "category": "Frontend"},
+        {"name": "JavaScript", "level": 84, "category": "Frontend"},
+        {"name": "Python", "level": 86, "category": "Backend"},
+        {"name": "Django", "level": 82, "category": "Backend"},
+        {"name": "Figma", "level": 86, "category": "Design"},
+        {"name": "Canva", "level": 88, "category": "Design"},
+        {"name": "UI/UX Design", "level": 90, "category": "Design"},
+        {"name": "Responsive Design", "level": 93, "category": "Frontend"},
+        {"name": "Animation Design", "level": 80, "category": "Design"},
     ],
-
-    # Interests
     "interests": [
-        {"icon": "🎨", "name": "UI/UX Design",       "desc": "Human-centered digital experiences"},
-        {"icon": "🤖", "name": "Artificial Intelligence","desc": "ML models & intelligent systems"},
-        {"icon": "🌐", "name": "Web Development",     "desc": "Modern, performant frontends & backends"},
-        {"icon": "💡", "name": "Business Innovation", "desc": "Tech-driven product thinking"},
-        {"icon": "📷", "name": "Photography",         "desc": "Visual storytelling through a lens"},
-        {"icon": "🎬", "name": "Video Editing",       "desc": "Cinematic post-production workflows"},
+        {"name": "UI/UX Design", "desc": "Interfaces with clarity, rhythm, and emotional precision."},
+        {"name": "Artificial Intelligence", "desc": "Intelligent systems that make products more adaptive."},
+        {"name": "Web Development", "desc": "Fast, responsive web apps with reliable Django foundations."},
+        {"name": "Business Innovation", "desc": "Turning practical problems into product opportunities."},
+        {"name": "Photography", "desc": "Composition, lighting, and visual storytelling."},
+        {"name": "Video Editing", "desc": "Motion, pacing, and cinematic post-production."},
+        {"name": "Creative Technology", "desc": "Experiments that blend design, code, and interaction."},
     ],
-
-    # Projects
     "projects": [
         {
-            "title":       "E-Commerce Platform",
-            "desc":        "A full-featured online store with product catalogue, cart system, and secure checkout flow. Built with Django and custom CSS animations.",
-            "tags":        ["Django", "Python", "CSS3", "JavaScript"],
-            "category":   "fullstack",
-            "demo_url":    "#",
-            "github_url":  "https://github.com/Raviranjan010",
-            "featured":    True,
+            "title": "E-Commerce Website",
+            "desc": "A polished storefront concept with catalog browsing, product detail flow, cart patterns, and conversion-focused UI.",
+            "tags": ["Django", "Python", "CSS", "JavaScript"],
+            "category": "Full Stack",
+            "featured": True,
+            "metric": "Commerce",
         },
         {
-            "title":       "Interactive To-Do App",
-            "desc":        "A productivity app with drag-and-drop tasks, local storage persistence, priority labels, and smooth micro-animations.",
-            "tags":        ["JavaScript", "HTML5", "CSS3"],
-            "category":   "frontend",
-            "demo_url":    "#",
-            "github_url":  "https://github.com/Raviranjan010",
-            "featured":    True,
+            "title": "Interactive To-Do App",
+            "desc": "A productivity interface with task states, priority labels, local persistence, and smooth micro-interactions.",
+            "tags": ["JavaScript", "HTML", "CSS"],
+            "category": "Frontend",
+            "featured": True,
+            "metric": "Interaction",
         },
         {
-            "title":       "BMI Calculator + Graphs",
-            "desc":        "Health metrics tool with real-time Chart.js visualizations, body-type classification, and a clean data-driven interface.",
-            "tags":        ["Python", "JavaScript", "Chart.js"],
-            "category":   "frontend",
-            "demo_url":    "#",
-            "github_url":  "https://github.com/Raviranjan010",
-            "featured":    True,
+            "title": "BMI Calculator with Graphs",
+            "desc": "A health metric tool with visual feedback, chart-ready layout, and clear result interpretation.",
+            "tags": ["Python", "JavaScript", "Charts"],
+            "category": "Data UI",
+            "featured": True,
+            "metric": "Analytics",
         },
         {
-            "title":       "Animated Timeline",
-            "desc":        "Scroll-driven interactive timeline component with milestone reveals, smooth easing, and mobile-responsive layout.",
-            "tags":        ["HTML5", "CSS3", "JavaScript"],
-            "category":   "frontend",
-            "demo_url":    "#",
-            "github_url":  "https://github.com/Raviranjan010",
-            "featured":    False,
+            "title": "Timeline Project",
+            "desc": "A scroll-aware timeline for presenting milestones with clean motion and compact mobile behavior.",
+            "tags": ["HTML", "CSS", "Animation"],
+            "category": "UI System",
+            "featured": False,
+            "metric": "Motion",
         },
         {
-            "title":       "Sticker Tag System",
-            "desc":        "A custom tagging and labelling web tool for categorising digital stickers with drag-and-drop organization.",
-            "tags":        ["JavaScript", "CSS3", "HTML5"],
-            "category":   "frontend",
-            "demo_url":    "#",
-            "github_url":  "https://github.com/Raviranjan010",
-            "featured":    False,
+            "title": "Sticker Tag Project",
+            "desc": "A digital organization tool for tagging visual assets with flexible grouping and playful interface details.",
+            "tags": ["JavaScript", "CSS", "UX"],
+            "category": "Tooling",
+            "featured": False,
+            "metric": "Utility",
         },
         {
-            "title":       "Portfolio Website",
-            "desc":        "A handcrafted, premium student portfolio site built with Django, featuring dark mode, smooth animations, and a fully dynamic backend.",
-            "tags":        ["Django", "Python", "CSS3", "JavaScript"],
-            "category":   "fullstack",
-            "demo_url":    "#",
-            "github_url":  "https://github.com/Raviranjan010",
-            "featured":    False,
+            "title": "Portfolio Websites",
+            "desc": "Custom personal websites built around identity, visual hierarchy, responsive layouts, and maintainable templates.",
+            "tags": ["Django", "UI/UX", "Responsive"],
+            "category": "Brand System",
+            "featured": False,
+            "metric": "Identity",
         },
     ],
-
-    # Achievements
     "achievements": [
-        {"year": "2024", "title": "Top Design Project", "desc": "Awarded best UI/UX project in department hackathon"},
-        {"year": "2024", "title": "LPU Tech Fest Finalist", "desc": "Top 10 finalist in web development challenge"},
-        {"year": "2023", "title": "Self-Taught Django", "desc": "Completed full Django course with 3 production deployments"},
-        {"year": "2023", "title": "Figma Certified",   "desc": "Completed Figma UI Design certification course"},
+        {"year": "2026", "title": "Portfolio Architecture", "desc": "Built a Django portfolio with reusable templates and dynamic context."},
+        {"year": "2025", "title": "Design Systems Practice", "desc": "Created consistent UI kits and responsive interface studies in Figma."},
+        {"year": "2025", "title": "Frontend Experiments", "desc": "Explored animation, layout, and interaction patterns through hands-on projects."},
+        {"year": "2024", "title": "Creative Production", "desc": "Developed photography, editing, and visual storytelling workflows."},
     ],
 }
 
 
-def home(request):
-    """Homepage view — hero, skills, projects, placement status."""
-    ctx = {
+def _context(page):
+    return {
         **STUDENT,
-        "featured_projects": [p for p in STUDENT["projects"] if p["featured"]],
-        "page": "home",
+        "page": page,
+        "featured_projects": [project for project in STUDENT["projects"] if project["featured"]],
     }
-    return render(request, "base/home.html", ctx)
+
+
+def home(request):
+    return render(request, "base/home.html", _context("home"))
 
 
 def about(request):
-    """About page — detailed background, interests, achievements."""
-    ctx = {
-        **STUDENT,
-        "page": "about",
-    }
-    return render(request, "base/about.html", ctx)
+    return render(request, "base/about.html", _context("about"))
+
+
+@require_POST
+def contact(request):
+    name = request.POST.get("name", "").strip()
+    email = request.POST.get("email", "").strip()
+    message = request.POST.get("message", "").strip()
+
+    if not name or not email or not message:
+        return JsonResponse({"ok": False, "message": "Please complete all required fields."}, status=400)
+
+    return JsonResponse({
+        "ok": True,
+        "message": "Thanks, Ravi received your message draft successfully.",
+    })

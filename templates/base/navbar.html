@@ -1,42 +1,30 @@
-<!-- ════════════════════════════════
-     NAVBAR
-     ════════════════════════════════ -->
 <header class="site-header" id="site-header">
-    <div class="nav-container">
-
-        <!-- Logo -->
-        <a href="{% url 'base:home' %}" class="nav-logo">
-            <span class="logo-bracket">&lt;</span>
-            <span class="logo-name">RRK</span>
-            <span class="logo-bracket">/&gt;</span>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="nav-shell">
+        <a href="{% url 'base:home' %}" class="brand" aria-label="{{ name }} home">
+            <span class="brand-sigil">{{ initials }}</span>
+            <span class="brand-copy">
+                <strong>Ravi Ranjan</strong>
+                <small>Student Developer</small>
+            </span>
         </a>
 
-        <!-- Desktop Nav Links -->
-        <nav class="nav-links" id="nav-links">
-            <a href="{% url 'base:home' %}" class="nav-item {% if page == 'home' %}active{% endif %}">Home</a>
-            <a href="{% url 'base:about' %}" class="nav-item {% if page == 'about' %}active{% endif %}">About</a>
-            <a href="{% url 'base:home' %}#projects" class="nav-item">Projects</a>
-            <a href="{% url 'base:home' %}#skills" class="nav-item">Skills</a>
-            <a href="{% url 'base:home' %}#contact" class="nav-item">Contact</a>
+        <nav class="nav-links" id="nav-links" aria-label="Primary navigation">
+            <a href="{% url 'base:home' %}" class="{% if page == 'home' %}active{% endif %}">Home</a>
+            <a href="{% url 'base:about' %}" class="{% if page == 'about' %}active{% endif %}">About</a>
+            <a href="{% url 'base:home' %}#projects">Projects</a>
+            <a href="{% url 'base:home' %}#skills">Skills</a>
+            <a href="{% url 'base:home' %}#contact">Contact</a>
         </nav>
 
-        <!-- Controls -->
-        <div class="nav-controls">
-            <button class="theme-btn" id="theme-btn" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
-                <i class="fa-solid fa-moon" id="theme-icon"></i>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark and light mode">
+                <span class="theme-icon">D</span>
             </button>
-            <a href="#contact" class="nav-cta btn-ghost">Let's Talk</a>
-
-            <!-- Mobile Toggle -->
-            <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <a href="{% url 'base:home' %}#contact" class="nav-contact">Let's Talk</a>
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span>
             </button>
         </div>
-
     </div>
 </header>
-
-<!-- Mobile Menu Overlay -->
-<div class="mobile-overlay" id="mobile-overlay"></div>

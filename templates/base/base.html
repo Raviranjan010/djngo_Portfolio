@@ -4,81 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ name }} | CS Engineering Portfolio{% endblock %}</title>
+    <title>{% block title %}{{ name }} | Student Portfolio{% endblock %}</title>
     <meta name="description" content="{% block meta_desc %}{{ intro_sub }}{% endblock %}">
-    <meta name="keywords" content="Ravi Ranjan Kashyap, portfolio, CS student, web developer, UI/UX designer, Django, LPU">
+    <meta name="keywords" content="Ravi Ranjan Kashyap, Django portfolio, computer science student, UI UX designer, web developer">
     <meta name="author" content="{{ name }}">
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ name }} | Portfolio">
+    <meta property="og:title" content="{{ name }} | Computer Science Portfolio">
     <meta property="og:description" content="{{ intro_sub }}">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-
-    <!-- Main Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'base/css/main.css' %}">
-
-    {% block extra_css %}{% endblock %}
 </head>
 <body>
-
-    <!-- Page Loader -->
-    <div class="page-loader" id="page-loader">
-        <div class="loader-inner">
-            <div class="loader-initials">
-                <span class="l-r">R</span><span class="l-accent">R</span><span class="l-k">K</span>
-            </div>
-            <div class="loader-bar-track">
-                <div class="loader-bar-fill"></div>
-            </div>
-            <p class="loader-tagline">Loading Portfolio…</p>
-        </div>
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader-mark">RRK</div>
+        <div class="loader-line"><span></span></div>
     </div>
 
-    <!-- Custom Cursor (desktop only) -->
-    <div class="cursor-ring" id="cursor-ring"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Navigation -->
     {% include "base/navbar.html" %}
 
-    <!-- Main Content -->
-    <main>
+    <main id="main-content">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
     {% include "base/footer.html" %}
 
-    <!-- Scroll To Top -->
-    <button class="scroll-top-btn" id="scroll-top" aria-label="Scroll to top">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-
-    <!-- Toast Notification -->
-    <div class="toast-notification" id="toast">
-        <i class="fa-solid fa-circle-check"></i>
-        <span id="toast-msg">Message sent!</span>
-    </div>
-
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <!-- Main JS -->
+    <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">UP</button>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="{% static 'base/js/main.js' %}"></script>
-
     {% block extra_js %}{% endblock %}
 </body>
 </html>
